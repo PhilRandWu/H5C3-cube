@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H5C3立方体</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            margin: 200px auto;
+            position: relative;
+            transform: rotate3d(1,1,0,0deg);
+            transform-style: preserve-3d;
+            /* perspective: 25px;
+            perspective-origin: 25px 30px; */
+        }
+        .box > div{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.6;
+        }
+        .front{
+            background-color: #f00;
+            transform: translateZ(100px);
+        }
+        .back{
+            background-color: #0f0;
+            transform: translateZ(-100px) rotateY(180deg);
+        }
+        .left{
+            background-color: #00f;
+            transform: translateX(-100px) rotateY(-90deg);
+        }
+        .right{
+            background-color: pink;
+            transform: translateX(100px) rotateY(90deg);
+        }
+        .top{
+            background-color: purple;
+            transform: translateY(-100px) rotateX(-90deg);
+        }
+        .right{
+            background-color: orange;
+            transform: translateY(100px) rotateX(90deg);
+        }
+    </style>
+</head>
+<body>
+   <div class="box">
+       <div class="front"></div>
+       <div class="back"></div>
+       <div class="left"></div>
+       <div class="right"></div>
+       <div class="top"></div>
+       <div class="bottom"></div>
+   </div>
+   <script src="../jquery.js"></script>
+   <script>
+       window.onload = function () {
+            var box = document.getElementsByClassName("box")[0];
+            var num = 0;
+            box.onmouseenter = function () {
+                
+                var timer = setInterval(function (){
+                    
+                    $(".box").css({
+                        "transform": "rotate3d(1,1,0,"+ num +"deg)"
+                    });
+                    
+                    num ++;
+                },100);
+                $(".box").mouseleave(function () { 
+                        clearInterval(timer);
+                });
+            }
+           
+       }
+   </script>
+</body>
+</html>
